@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   IMonitorModule.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dborysen <dborysen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/09 13:48:19 by dborysen          #+#    #+#             */
-/*   Updated: 2019/04/10 16:22:00 by dborysen         ###   ########.fr       */
+/*   Created: 2019/04/11 12:46:14 by dborysen          #+#    #+#             */
+/*   Updated: 2019/04/11 16:05:41 by dborysen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "Gkrellm.hpp"
+#ifndef IMONITOR_MODULE_HPP
+#define IMONITOR_MODULE_HPP
 
-int main()
+class IMonitorModule
 {
-	Gkrellm().Start();
+public:
+	IMonitorModule();
+	~IMonitorModule();
 
-	return 0;
-}
+private:
+	IMonitorModule(const IMonitorModule& other);
+	IMonitorModule& operator=(const IMonitorModule& other);
+
+};
+
+#endif

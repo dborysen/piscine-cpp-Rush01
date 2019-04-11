@@ -6,7 +6,7 @@
 /*   By: dborysen <dborysen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 15:20:11 by dborysen          #+#    #+#             */
-/*   Updated: 2019/04/10 16:08:22 by dborysen         ###   ########.fr       */
+/*   Updated: 2019/04/11 16:08:20 by dborysen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@
 
 class Gkrellm
 {
-public:
-
+public:	
 	Gkrellm();
 	~Gkrellm();
 
@@ -39,8 +38,8 @@ private:
 	void	OutputCPUAndRAM(WINDOW* win) const;
 	void	OutputNetworkThroughput(WINDOW* win) const;
 
-	// void	OutputRAM(WINDOW* win) const;
-
+	Gkrellm(const Gkrellm& other);
+	Gkrellm& operator=(const Gkrellm& other);
 
 	WINDOW*		_infoBox;
 };

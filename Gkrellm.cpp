@@ -6,7 +6,7 @@
 /*   By: dborysen <dborysen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 15:29:23 by dborysen          #+#    #+#             */
-/*   Updated: 2019/04/10 16:14:48 by dborysen         ###   ########.fr       */
+/*   Updated: 2019/04/11 16:00:02 by dborysen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,17 @@
 Gkrellm::Gkrellm() {}
 
 Gkrellm::~Gkrellm() {}
+
+Gkrellm::Gkrellm(const Gkrellm& other)
+{
+	*this = other;
+}
+
+Gkrellm& Gkrellm::operator=(const Gkrellm& other)
+{
+	static_cast<void>(other);
+	return *this;
+}
 
 static std::string GetOsName()
 {
@@ -142,7 +153,6 @@ void	Gkrellm::Start()
 		OutputTime(_infoBox);
 		OutputCPUAndRAM(_infoBox);
 		OutputNetworkThroughput(_infoBox);
-		sleep(1);
 		wrefresh(_infoBox);
 	}
 
@@ -162,7 +172,7 @@ void	Gkrellm::_StartNcursesMode()
 
 void	Gkrellm::_MakeBox()
 {
-	int heigh = 40;
+	int heigh = 25;
 	int width = 43;
 	int startY = 0;
 	int startX = 0;

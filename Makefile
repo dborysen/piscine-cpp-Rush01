@@ -6,7 +6,7 @@
 #    By: dborysen <dborysen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/15 11:35:57 by dborysen          #+#    #+#              #
-#    Updated: 2019/04/10 16:16:57 by dborysen         ###   ########.fr        #
+#    Updated: 2019/04/11 16:08:51 by dborysen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,14 +16,14 @@ SRCS =  main.cpp Gkrellm.cpp
 
 OBJECT = $(SRCS:.cpp=.o)
 
-FLAGS = -Wall -Wextra -Werror -lncurses
+FLAGS = -Wall -Wextra -Werror
 
 CC = clang++
 
 all: $(NAME)
 
 $(NAME) : $(OBJECT)
-	@$(CC) $(OBJECT) -o $(NAME)
+	@$(CC) $(FLAGS) -lncurses $(OBJECT) -o $(NAME)
 
 $(OBJECT) : $(SRCS)
 	@$(CC) $(FLAGS) -c $(SRCS)
@@ -38,6 +38,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm buff Net_buff
 	@echo "\033[32m[binary has been deleted]\033[0m"
 
 re: fclean all 
