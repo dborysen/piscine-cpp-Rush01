@@ -6,13 +6,13 @@
 #    By: dborysen <dborysen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/15 11:35:57 by dborysen          #+#    #+#              #
-#    Updated: 2019/04/11 16:08:51 by dborysen         ###   ########.fr        #
+#    Updated: 2019/04/11 16:57:16 by dborysen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_gkrellm
 
-SRCS =  main.cpp Gkrellm.cpp
+SRCS =  main.cpp Gkrellm.cpp IMonitorDisplay.cpp IMonitorModule.cpp
 
 OBJECT = $(SRCS:.cpp=.o)
 
@@ -34,11 +34,11 @@ comp:
 
 clean:
 	@rm -f $(OBJECT)
+	@rm buff Net_buff Processes_buff Disks_buff
 	@echo "\033[32m[.o files has been deleted]\033[0m"
 
 fclean: clean
 	@rm -f $(NAME)
-	@rm buff Net_buff
 	@echo "\033[32m[binary has been deleted]\033[0m"
 
 re: fclean all 

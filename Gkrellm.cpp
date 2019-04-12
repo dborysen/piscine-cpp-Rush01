@@ -6,7 +6,7 @@
 /*   By: dborysen <dborysen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 15:29:23 by dborysen          #+#    #+#             */
-/*   Updated: 2019/04/11 16:00:02 by dborysen         ###   ########.fr       */
+/*   Updated: 2019/04/11 17:01:14 by dborysen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,44 @@ void	Gkrellm::OutputNetworkThroughput(WINDOW* win) const
 		(std::string("-----------------------------------------")).c_str());
 }
 
+void	Gkrellm::OutputDisks(WINDOW* win) const
+{
+	std::system("top -l 1 | head | grep -E \"Disks\" > Disks_buff");
+	std::ifstream				ifs("Disks_buff");
+	std::vector<std::string>	cpu;
+	std::string					buff;
+
+	while(getline(ifs, buff, ' '))
+		cpu.push_back(buff);
+
+	ifs.close();
+
+	mvwprintw(win, 20, 1, ("Disks read:	" + cpu.at(1)).c_str());
+	mvwprintw(win, 21, 1, ("Disks written:	" + cpu.at(3)).c_str());
+	mvwprintw(win, 22, 1,
+		(std::string("-----------------------------------------")).c_str());
+}
+
+void	Gkrellm::OutputProcessesNo(WINDOW* win) const
+{
+	std::system("top -l 1 | head | grep -E \"Processes:\" > Processes_buff");
+	std::ifstream				ifs("Processes_buff");
+	std::vector<std::string>	cpu;
+	std::string					buff;
+
+	while(getline(ifs, buff, ' '))
+		cpu.push_back(buff);
+
+	ifs.close();
+
+	mvwprintw(win, 23, 1, ("Processes total:	" + cpu.at(1)).c_str());
+	mvwprintw(win, 24, 1, ("Processes running:	" + cpu.at(3)).c_str());
+	mvwprintw(win, 25, 1, ("Processes sleeping:	" + cpu.at(5)).c_str());
+	mvwprintw(win, 26, 1, ("Processes threads:	" + cpu.at(7)).c_str());
+	mvwprintw(win, 27, 1,
+		(std::string("-----------------------------------------")).c_str());
+}
+
 void	Gkrellm::Start()
 {
 	_StartNcursesMode();
@@ -153,6 +191,9 @@ void	Gkrellm::Start()
 		OutputTime(_infoBox);
 		OutputCPUAndRAM(_infoBox);
 		OutputNetworkThroughput(_infoBox);
+		OutputDisks(_infoBox);
+		OutputProcessesNo(_infoBox);
+
 		wrefresh(_infoBox);
 	}
 
@@ -172,7 +213,7 @@ void	Gkrellm::_StartNcursesMode()
 
 void	Gkrellm::_MakeBox()
 {
-	int heigh = 25;
+	int heigh = 28;
 	int width = 43;
 	int startY = 0;
 	int startX = 0;

@@ -6,7 +6,7 @@
 /*   By: dborysen <dborysen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 15:20:11 by dborysen          #+#    #+#             */
-/*   Updated: 2019/04/11 16:08:20 by dborysen         ###   ########.fr       */
+/*   Updated: 2019/04/11 16:56:12 by dborysen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 #include <algorithm>
 #include <ncurses.h>
 #include <sys/utsname.h>
+#include "IMonitorDisplay.hpp"
+#include "IMonitorModule.hpp"
 
-class Gkrellm
+class Gkrellm : public IMonitorDisplay, public IMonitorModule
 {
 public:	
 	Gkrellm();
@@ -37,11 +39,12 @@ private:
 	void	OutputUsernameAndHostname(WINDOW* win) const;
 	void	OutputCPUAndRAM(WINDOW* win) const;
 	void	OutputNetworkThroughput(WINDOW* win) const;
+	void	OutputDisks(WINDOW* win) const;
+	void	OutputProcessesNo(WINDOW* win) const;
+
 
 	Gkrellm(const Gkrellm& other);
 	Gkrellm& operator=(const Gkrellm& other);
-
-	WINDOW*		_infoBox;
 };
 
 #endif

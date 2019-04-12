@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   IMonitorDisplay.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dborysen <dborysen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/09 13:48:19 by dborysen          #+#    #+#             */
-/*   Updated: 2019/04/11 16:22:11 by dborysen         ###   ########.fr       */
+/*   Created: 2019/04/11 16:26:55 by dborysen          #+#    #+#             */
+/*   Updated: 2019/04/11 16:30:31 by dborysen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "Gkrellm.hpp"
+#include "IMonitorDisplay.hpp"
 
-int main()
+IMonitorDisplay::IMonitorDisplay() {};
+
+IMonitorDisplay::~IMonitorDisplay() {};
+
+IMonitorDisplay::IMonitorDisplay(const IMonitorDisplay& other)
 {
-	Gkrellm().Start();
+	*this = other;
+};
 
-	return 0;
+IMonitorDisplay& IMonitorDisplay::operator=(const IMonitorDisplay& other)
+{
+	static_cast<void>(other);
+	return *this;
 }
